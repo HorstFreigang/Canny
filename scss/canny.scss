@@ -1,0 +1,207 @@
+// CANNY CSS
+
+@mixin transition($property: all, $duration: 0s, $delay: 0s, $timing: ease) {
+	-webkit-transition: $property $duration $delay $timing;
+	-moz-transition: $property $duration $delay $timing;
+	-o-transition: $property $duration $delay $timing;
+	transition: $property $duration $delay $timing;
+}
+
+@mixin box-shadow($value) {
+	-webkit-box-shadow: $value;
+	-moz-box-shadow: $value;
+	-o-box-shadow: $value;
+	box-shadow: $value;
+}
+
+$c_main: #404040;
+$c_sub: darken($c_main, 10);
+$c_sub_layer: lighten($c_main, 20);
+
+/*****************************************************************/
+/*	MAIN CSS                                                     */
+/*****************************************************************/
+
+.canny {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 400px;
+	margin: 0;
+	padding: 0;
+	background-color: $c_main;
+	list-style: none;
+
+	@media only screen and (max-width: 767px) {
+		width: 290px;
+	}
+
+	a {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		display: block;
+		padding: 13px 20px 11px;
+		font: {
+			size: 16px;
+			weight: normal;
+		}
+		text-decoration: none;
+		color: #fff;
+
+		&:hover {
+			background-color: darken($c_main, 20);
+		}
+	}
+}
+
+.canny-parent {
+	& > a {
+		position: relative;
+
+		&:after {
+			content: '\00BB';
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			font-size: 20px;
+			color: inherit;
+		}
+	}
+
+	&.canny-sub-open {
+		& > a {
+			position: relative;
+
+			&:after {
+				-webkit-transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				transform: rotate(90deg);
+			}
+		}
+	}
+}
+
+.canny-content-effects {
+	/*@include transition(all, 300ms);
+	-webkit-filter: blur(4px);
+	-moz-filter: blur(4px);
+	-ms-filter: blur(4px);
+	-o-filter: blur(4px);
+	filter: blur(4px);*/
+}
+
+/*****************************************************************/
+/*	SUBMENU                                                      */
+/*****************************************************************/
+
+.canny-submenu {
+	@include transition(all, 300ms);
+	display: none;
+	margin: 0;
+	padding: 0;
+	background-color: $c_sub;
+	list-style: none;
+
+	&.canny-sub-visible {
+		display: block;
+	}
+}
+
+.canny-layered {
+	.canny-submenu {
+		@include box-shadow(6px 0 10px rgba(0, 0, 0, 0.4));
+		display: block;
+		position: absolute;
+		top: 0;
+		left: -103%;
+		z-index: 30;
+		width: 98%;
+		min-height: 100%;
+
+		&.canny-sub-visible {
+			left: 0;
+		}
+
+		a {
+			color: $c_main;
+
+			&:hover {
+				background-color: darken($c_sub_layer, 20);
+			}
+		}
+	}
+
+	ul {
+		background-color: $c_sub_layer;
+
+		a {
+			border-bottom: solid 1px darken($c_sub_layer, 12);
+		}
+
+		ul {
+			background-color: lighten($c_sub_layer, 20);
+
+			a {
+				border-bottom: solid 1px $c_sub_layer;
+			}
+		}
+	}
+}
+
+/*****************************************************************/
+/*	BACK LINK                                                    */
+/*****************************************************************/
+
+.canny-back {
+
+}
+
+/*****************************************************************/
+/*	Close LINK                                                   */
+/*****************************************************************/
+
+.canny {
+	.canny-close {
+		text-align: right;
+	}
+}
+
+/*****************************************************************/
+/*	OVERLAY                                                      */
+/*****************************************************************/
+
+#canny-overlay {
+	@include transition(opacity, 300ms);
+	visibility: hidden;
+	opacity: 0;
+	position: fixed;
+	top: 60px;
+	left: 0;
+	z-index: 99;
+	width: 0;
+	height: 0;
+	background-color: rgba(0, 0, 0, .5);
+
+	&.fading-in,
+	&.visible {
+		visibility: visible;
+		opacity: 1;
+		width: 100%;
+		height: 100%;
+	}
+
+	&.fading-out {
+		opacity: 0;
+	}
+}
+
+
+// DEMO CSS
+@import "demo";

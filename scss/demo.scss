@@ -1,0 +1,82 @@
+html,
+body {
+	counter-reset: sec;
+	margin: 0;
+	height: 100%;
+	font-family: arial;
+	font-size: 14px;
+}
+
+.container {
+	overflow: auto;
+	height: 100%;
+	background-color: #238dab;
+}
+
+.header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 60px;
+	box-sizing: border-box;
+	background-color: black;
+}
+
+.content {
+	padding: 60px 0 0 20px;
+
+	@media only screen and (max-width: 767px) {
+		width: auto;
+		padding: 60px 20px 0;
+	}
+}
+
+.offcanvas-container {
+	overflow: hidden;
+	position: relative;
+	width: 600px;
+	height: 300px;
+	background-color: #fff;
+	border: solid 1px #000;
+
+	@media only screen and (max-width: 767px) {
+		width: auto;
+	}
+
+	p {
+		padding: 0 20px;
+	}
+
+	.container-header {
+		width: 100%;
+		height: 30px;
+		background-color: #000;
+	}
+
+	.canny-content-toggle2 {
+		float: right;
+	}
+
+	.canny {
+		top: 0;
+		width: 150px;
+		padding: 10px;
+		background-color: #000;
+	}
+}
+
+.canny {
+	top: 60px;
+}
+
+.canny-toggle {
+	display: inline-block;
+	box-sizing: border-box;
+	height: 60px;
+	margin-left: 20px;
+	padding: 22px 20px 0;
+	background-color: white;
+	color: black;
+	text-decoration: none;
+}
