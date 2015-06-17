@@ -17,6 +17,7 @@
 $c_main: #404040;
 $c_sub: darken($c_main, 10);
 $c_sub_layer: lighten($c_main, 20);
+$canny_width: 400px;
 
 /*****************************************************************/
 /*	MAIN CSS                                                     */
@@ -29,10 +30,11 @@ $c_sub_layer: lighten($c_main, 20);
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: absolute;
+	left: -#{$canny-width};
 	top: 0;
 	bottom: 0;
 	z-index: 100;
-	width: 400px;
+	width: $canny-width;
 	margin: 0;
 	padding: 0;
 	background-color: $c_main;
