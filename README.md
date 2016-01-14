@@ -71,7 +71,7 @@ The element that contains Canny and ``contentWrap``, if empty Canny searches for
 **Value:** ID or Class (e.g.: ``'#container'`` or ``'.container'``)  
 **Default:** ``''``
 
-This is the element that contains the content. It should be the outermost element in your markup and it **must not contain Canny**. It needs to be set if you want to use ``pushContent``.
+This is the element that contains the content. It should be the outermost element in your markup and it **must not contain** Canny. It needs to be set if you want to use ``pushContent``.
 
 - - - -
 
@@ -153,12 +153,3 @@ Position of the menu. Currently you can place Canny either on the left or right 
 **Default:** ``300``
 
 How fast Canny slides in and out.
-
-- - - -
-
-**navPosition**
-
-**Value:** ``'left'`` or ``'right'``  
-**Default:** ``'left'``
-
-Position of the menu. Currently you can place Canny either on the left or right side.
