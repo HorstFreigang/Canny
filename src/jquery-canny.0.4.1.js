@@ -12,6 +12,7 @@
  * 	- updated css
  *
  * 	0.4.1 bugfix: "searchSubmenu not found"
+ * 	0.4.1 bugfix: close button now works
  *
  * */
 
@@ -425,6 +426,12 @@
 						}
 					}
 				);
+			}
+
+			if(_self.options.closeButton == true) {
+				_navi.on('click', '.canny-close', function() {
+					_self.close(_navi);
+				});
 			}
 
 			if(_self.options.dragToClose == true) {

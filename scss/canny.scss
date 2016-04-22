@@ -172,6 +172,7 @@ $canny_width: 400px;
 .canny {
 	.canny-close {
 		text-align: right;
+		cursor: pointer;
 	}
 }
 
@@ -203,7 +204,3 @@ $canny_width: 400px;
 		opacity: 0;
 	}
 }
-
-
-// DEMO CSS
-@import "demo";
