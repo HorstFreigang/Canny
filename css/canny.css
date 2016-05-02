@@ -1,7 +1,7 @@
 /*****************************************************************/
 /*	MAIN CSS                                                     */
 /*****************************************************************/
-/* line 26, ../scss/canny.scss */
+/* line 63, ../scss/canny.scss */
 .canny {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -20,12 +20,12 @@
   list-style: none;
 }
 @media only screen and (max-width: 767px) {
-  /* line 26, ../scss/canny.scss */
+  /* line 63, ../scss/canny.scss */
   .canny {
     width: 290px;
   }
 }
-/* line 47, ../scss/canny.scss */
+/* line 84, ../scss/canny.scss */
 .canny a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -37,16 +37,16 @@
   text-decoration: none;
   color: #fff;
 }
-/* line 60, ../scss/canny.scss */
+/* line 97, ../scss/canny.scss */
 .canny a:hover {
   background-color: #0d0d0d;
 }
 
-/* line 67, ../scss/canny.scss */
+/* line 104, ../scss/canny.scss */
 .canny-parent > a {
   position: relative;
 }
-/* line 70, ../scss/canny.scss */
+/* line 107, ../scss/canny.scss */
 .canny-parent > a:after {
   content: '\00BB';
   position: absolute;
@@ -55,18 +55,18 @@
   font-size: 20px;
   color: inherit;
 }
-/* line 81, ../scss/canny.scss */
+/* line 118, ../scss/canny.scss */
 .canny-parent.canny-sub-open > a {
   position: relative;
 }
-/* line 84, ../scss/canny.scss */
+/* line 121, ../scss/canny.scss */
 .canny-parent.canny-sub-open > a:after {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
-/* line 93, ../scss/canny.scss */
+/* line 130, ../scss/canny.scss */
 .canny-content-effects {
   /*@include transition(all, 300ms);
   -webkit-filter: blur(4px);
@@ -79,7 +79,7 @@
 /*****************************************************************/
 /*	SUBMENU                                                      */
 /*****************************************************************/
-/* line 106, ../scss/canny.scss */
+/* line 143, ../scss/canny.scss */
 .canny-submenu {
   -webkit-transition: all 300ms 0s ease;
   -moz-transition: all 300ms 0s ease;
@@ -91,12 +91,12 @@
   background-color: #272727;
   list-style: none;
 }
-/* line 114, ../scss/canny.scss */
+/* line 151, ../scss/canny.scss */
 .canny-submenu.canny-sub-visible {
   display: block;
 }
 
-/* line 120, ../scss/canny.scss */
+/* line 157, ../scss/canny.scss */
 .canny-layered .canny-submenu {
   -webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
@@ -110,31 +110,31 @@
   width: 98%;
   min-height: 100%;
 }
-/* line 130, ../scss/canny.scss */
+/* line 167, ../scss/canny.scss */
 .canny-layered .canny-submenu.canny-sub-visible {
   left: 0;
 }
-/* line 134, ../scss/canny.scss */
+/* line 171, ../scss/canny.scss */
 .canny-layered .canny-submenu a {
   color: #404040;
 }
-/* line 137, ../scss/canny.scss */
+/* line 174, ../scss/canny.scss */
 .canny-layered .canny-submenu a:hover {
   background-color: #404040;
 }
-/* line 143, ../scss/canny.scss */
+/* line 180, ../scss/canny.scss */
 .canny-layered ul {
   background-color: #737373;
 }
-/* line 146, ../scss/canny.scss */
+/* line 183, ../scss/canny.scss */
 .canny-layered ul a {
   border-bottom: solid 1px #545454;
 }
-/* line 150, ../scss/canny.scss */
+/* line 187, ../scss/canny.scss */
 .canny-layered ul ul {
   background-color: #a6a6a6;
 }
-/* line 153, ../scss/canny.scss */
+/* line 190, ../scss/canny.scss */
 .canny-layered ul ul a {
   border-bottom: solid 1px #737373;
 }
@@ -145,7 +145,7 @@
 /*****************************************************************/
 /*	Close LINK                                                   */
 /*****************************************************************/
-/* line 173, ../scss/canny.scss */
+/* line 210, ../scss/canny.scss */
 .canny .canny-close {
   text-align: right;
   cursor: pointer;
@@ -154,7 +154,7 @@
 /*****************************************************************/
 /*	OVERLAY                                                      */
 /*****************************************************************/
-/* line 183, ../scss/canny.scss */
+/* line 220, ../scss/canny.scss */
 #canny-overlay {
   -webkit-transition: opacity 300ms 0s ease;
   -moz-transition: opacity 300ms 0s ease;
@@ -170,14 +170,14 @@
   height: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 195, ../scss/canny.scss */
+/* line 232, ../scss/canny.scss */
 #canny-overlay.fading-in, #canny-overlay.visible {
   visibility: visible;
   opacity: 1;
   width: 100%;
   height: 100%;
 }
-/* line 203, ../scss/canny.scss */
+/* line 240, ../scss/canny.scss */
 #canny-overlay.fading-out {
   opacity: 0;
 }

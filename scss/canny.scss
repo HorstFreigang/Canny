@@ -1,13 +1,50 @@
 // CANNY CSS
 
-@mixin transition($property: all, $duration: 0s, $delay: 0s, $timing: ease) {
-	-webkit-transition: $property $duration $delay $timing;
-	-moz-transition: $property $duration $delay $timing;
-	-o-transition: $property $duration $delay $timing;
-	transition: $property $duration $delay $timing;
+@mixin canny-transition($property: all, $duration: 0s, $delay: 0s, $timing: ease) {
+	@if length($property) > 1 {
+		$length: length($property);
+
+		// duplicates value of duration, if necessary
+		@if length($duration) == 1 {
+			$d: $duration;
+
+			@for $i from 1 through ($length - 1) {
+				$duration: append($duration, $d);
+			}
+		}
+
+		// duplicates value of delay, if necessary
+		@if length($delay) == 1 {
+			$d: $delay;
+
+			@for $i from 1 through ($length - 1) {
+				$delay: append($delay, $d);
+			}
+		}
+
+		// duplicates value of timing-function, if necessary
+		@if length($timing) == 1 {
+			$d: $timing;
+
+			@for $i from 1 through ($length - 1) {
+				$timing: append($timing, $d);
+			}
+		}
+
+		-webkit-transition: zip($property, $duration, $delay, $timing);
+		-moz-transition: zip($property, $duration, $delay, $timing);
+		-o-transition: zip($property, $duration, $delay, $timing);
+		transition: zip($property, $duration, $delay, $timing);
+
+	} @else {
+		-webkit-transition: $property $duration $delay $timing;
+		-moz-transition: $property $duration $delay $timing;
+		-o-transition: $property $duration $delay $timing;
+		transition: $property $duration $delay $timing;
+	}
 }
 
-@mixin box-shadow($value) {
+@mixin canny-box-shadow($value) {
 	-webkit-box-shadow: $value;
 	-moz-box-shadow: $value;
 	-o-box-shadow: $value;
@@ -104,7 +141,7 @@ $canny_width: 400px;
 /*****************************************************************/
 
 .canny-submenu {
-	@include transition(all, 300ms);
+	@include canny-transition(all, 300ms);
 	display: none;
 	margin: 0;
 	padding: 0;
@@ -118,7 +155,7 @@ $canny_width: 400px;
 
 .canny-layered {
 	.canny-submenu {
-		@include box-shadow(6px 0 10px rgba(0, 0, 0, 0.4));
+		@include canny-box-shadow(6px 0 10px rgba(0, 0, 0, 0.4));
 		display: block;
 		position: absolute;
 		top: 0;
@@ -181,7 +218,7 @@ $canny_width: 400px;
 /*****************************************************************/
 
 #canny-overlay {
-	@include transition(opacity, 300ms);
+	@include canny-transition(opacity, 300ms);
 	visibility: hidden;
 	opacity: 0;
 	position: fixed;
