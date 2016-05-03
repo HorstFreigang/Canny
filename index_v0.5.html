@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Canny</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+		<link href="css/demo.css" rel="stylesheet" />
+		<link href="css/canny.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="container" class="container">
+			<div class="content">
+				<h1>Lorem ipsum dolor sit amet</h1>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
+				<div class="offcanvas-container">
+					<ul id="canny-content" class="canny">
+						<li><a href="#">öaskldhföal</a></li>
+						<li>
+							<a href="#">öaskldhföal</a>
+							<ul>
+								<li><a href="#">sdfasoouzs z psdf</a></li>
+								<li><a href="#">sdfasoouzs z psdf</a></li>
+								<li><a href="#">sdfasoouzs z psdf</a></li>
+							</ul>
+						</li>
+						<li><a href="#">öaskldhföal</a></li>
+						<li><a href="#">öaskldhföal</a></li>
+					</ul>
+					<div class="body">
+						<div class="container-header">
+							<button id="canny-content-toggle" class="canny-content-toggle">Inhalt</button>
+							<button id="canny-content-toggle2" class="canny-content-toggle2">Inhalt</button>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+					</div>
+					<ul id="canny-content2" class="canny">
+						<li><a href="#">öaskldhföal</a></li>
+						<li>
+							<a href="#">öaskldhföal</a>
+							<ul>
+								<li><a href="#">sdfasoouzs z psdf</a></li>
+								<li><a href="#">sdfasoouzs z psdf</a></li>
+								<li><a href="#">sdfasoouzs z psdf</a></li>
+							</ul>
+						</li>
+						<li><a href="#">öaskldhföal</a></li>
+						<li><a href="#">öaskldhföal</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="header">
+			<a href="#" id="canny-page-toggle" class="canny-toggle">Navigation</a>
+
+			<ul id="navigation" class="navigation">
+				<li><a href="#Start">Start</a></li>
+				<li>
+					<a href="#Portfolio">Portfolio</a>
+					<ul>
+						<li><a href="#Arbeit_1">Arbeit 1</a></li>
+						<li><a href="#Arbeit_2">Arbeit 2</a></li>
+						<li><a href="#Arbeit_3">Arbeit 3</a></li>
+						<li><a href="#Arbeit_4">Arbeit 4</a></li>
+						<li><a href="#Arbeit_5">Arbeit 5</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#Kunden">Kunden</a>
+					<ul>
+						<li><a href="#Kunden_1">Kunden 1</a></li>
+						<li><a href="#Kunden_2">Kunden 2</a></li>
+						<li><a href="#Kunden_3">Kunden 3</a></li>
+						<li><a href="#Kunden_4">Kunden 4</a></li>
+					</ul>
+				</li>
+				<li><a href="#Kontak">Kontak</a></li>
+				<li><a href="#Impressum">Impressum</a></li>
+			</ul>
+		</div>
+
+		<script src="vendor/jquery-2.2.3.min.js"></script>
+		<script src="src/jquery-canny.0.5.0.js"></script>
+		<script>
+			$(function() {
+				var myCannyPage = $('.navigation').canny({
+					transitionSpeed: 300,
+					threshold: 100,
+					cannyParent: '#container',
+					contentWrap: '#container',
+					navToggle: '.canny-toggle',
+					copyParentLink: true,
+					layers: true,
+					closeButton: true,
+					overlay: true,
+					isResponsive: true
+				});
+
+				var myCannyContent = $('#canny-content').canny({
+					transitionSpeed: 300,
+					threshold: 50,
+					pushContent: true,
+					contentWrap: '.body',
+					navToggle: '#canny-content-toggle',
+					layers: true
+				});
+
+				var myCannyContent2 = $('#canny-content2').canny({
+					transitionSpeed: 300,
+					threshold: 50,
+					pushContent: true,
+					contentWrap: '.body',
+					navToggle: '#canny-content-toggle2',
+					navPosition: 'right',
+					layers: true
+				});
+			});
+		</script>
+	</body>
+</html>

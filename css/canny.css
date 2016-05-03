@@ -1,7 +1,4 @@
-/*****************************************************************/
-/*	MAIN CSS                                                     */
-/*****************************************************************/
-/* line 63, ../scss/canny.scss */
+/* line 14, ../scss/canny.scss */
 .canny {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -9,7 +6,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
-  left: -400px;
+  opacity: 0;
   top: 0;
   bottom: 0;
   z-index: 100;
@@ -20,12 +17,22 @@
   list-style: none;
 }
 @media only screen and (max-width: 767px) {
-  /* line 63, ../scss/canny.scss */
+  /* line 14, ../scss/canny.scss */
   .canny {
     width: 290px;
   }
 }
-/* line 84, ../scss/canny.scss */
+/* line 35, ../scss/canny.scss */
+.canny.canny-align-left {
+  opacity: 1;
+  left: -400px;
+}
+/* line 40, ../scss/canny.scss */
+.canny.canny-align-right {
+  opacity: 1;
+  right: -400px;
+}
+/* line 45, ../scss/canny.scss */
 .canny a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -37,16 +44,16 @@
   text-decoration: none;
   color: #fff;
 }
-/* line 97, ../scss/canny.scss */
+/* line 58, ../scss/canny.scss */
 .canny a:hover {
   background-color: #0d0d0d;
 }
 
-/* line 104, ../scss/canny.scss */
+/* line 65, ../scss/canny.scss */
 .canny-parent > a {
   position: relative;
 }
-/* line 107, ../scss/canny.scss */
+/* line 68, ../scss/canny.scss */
 .canny-parent > a:after {
   content: '\00BB';
   position: absolute;
@@ -55,18 +62,18 @@
   font-size: 20px;
   color: inherit;
 }
-/* line 118, ../scss/canny.scss */
+/* line 79, ../scss/canny.scss */
 .canny-parent.canny-sub-open > a {
   position: relative;
 }
-/* line 121, ../scss/canny.scss */
+/* line 82, ../scss/canny.scss */
 .canny-parent.canny-sub-open > a:after {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
-/* line 130, ../scss/canny.scss */
+/* line 91, ../scss/canny.scss */
 .canny-content-effects {
   /*@include transition(all, 300ms);
   -webkit-filter: blur(4px);
@@ -76,32 +83,25 @@
   filter: blur(4px);*/
 }
 
-/*****************************************************************/
-/*	SUBMENU                                                      */
-/*****************************************************************/
-/* line 143, ../scss/canny.scss */
+/* line 104, ../scss/canny.scss */
 .canny-submenu {
-  -webkit-transition: all 300ms 0s ease;
-  -moz-transition: all 300ms 0s ease;
-  -o-transition: all 300ms 0s ease;
-  transition: all 300ms 0s ease;
   display: none;
   margin: 0;
   padding: 0;
   background-color: #272727;
   list-style: none;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
 }
-/* line 151, ../scss/canny.scss */
+/* line 115, ../scss/canny.scss */
 .canny-submenu.canny-sub-visible {
   display: block;
 }
 
-/* line 157, ../scss/canny.scss */
+/* line 121, ../scss/canny.scss */
 .canny-layered .canny-submenu {
-  -webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
-  -o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
-  box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   display: block;
   position: absolute;
   top: 0;
@@ -109,57 +109,48 @@
   z-index: 30;
   width: 98%;
   min-height: 100%;
+  -webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
 }
-/* line 167, ../scss/canny.scss */
+/* line 134, ../scss/canny.scss */
 .canny-layered .canny-submenu.canny-sub-visible {
   left: 0;
 }
-/* line 171, ../scss/canny.scss */
+/* line 138, ../scss/canny.scss */
 .canny-layered .canny-submenu a {
   color: #404040;
 }
-/* line 174, ../scss/canny.scss */
+/* line 141, ../scss/canny.scss */
 .canny-layered .canny-submenu a:hover {
   background-color: #404040;
 }
-/* line 180, ../scss/canny.scss */
+/* line 147, ../scss/canny.scss */
 .canny-layered ul {
   background-color: #737373;
 }
-/* line 183, ../scss/canny.scss */
+/* line 150, ../scss/canny.scss */
 .canny-layered ul a {
   border-bottom: solid 1px #545454;
 }
-/* line 187, ../scss/canny.scss */
+/* line 154, ../scss/canny.scss */
 .canny-layered ul ul {
   background-color: #a6a6a6;
 }
-/* line 190, ../scss/canny.scss */
+/* line 157, ../scss/canny.scss */
 .canny-layered ul ul a {
   border-bottom: solid 1px #737373;
 }
 
-/*****************************************************************/
-/*	BACK LINK                                                    */
-/*****************************************************************/
-/*****************************************************************/
-/*	Close LINK                                                   */
-/*****************************************************************/
-/* line 210, ../scss/canny.scss */
+/* line 177, ../scss/canny.scss */
 .canny .canny-close {
   text-align: right;
   cursor: pointer;
 }
 
-/*****************************************************************/
-/*	OVERLAY                                                      */
-/*****************************************************************/
-/* line 220, ../scss/canny.scss */
+/* line 187, ../scss/canny.scss */
 #canny-overlay {
-  -webkit-transition: opacity 300ms 0s ease;
-  -moz-transition: opacity 300ms 0s ease;
-  -o-transition: opacity 300ms 0s ease;
-  transition: opacity 300ms 0s ease;
   visibility: hidden;
   opacity: 0;
   position: fixed;
@@ -169,15 +160,19 @@
   width: 0;
   height: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: opacity 300ms;
+  -moz-transition: opacity 300ms;
+  -o-transition: opacity 300ms;
+  transition: opacity 300ms;
 }
-/* line 232, ../scss/canny.scss */
+/* line 202, ../scss/canny.scss */
 #canny-overlay.fading-in, #canny-overlay.visible {
   visibility: visible;
   opacity: 1;
   width: 100%;
   height: 100%;
 }
-/* line 240, ../scss/canny.scss */
+/* line 210, ../scss/canny.scss */
 #canny-overlay.fading-out {
   opacity: 0;
 }

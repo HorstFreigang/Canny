@@ -1,64 +1,15 @@
-// CANNY CSS
-
-@mixin canny-transition($property: all, $duration: 0s, $delay: 0s, $timing: ease) {
-	@if length($property) > 1 {
-		$length: length($property);
-
-		// duplicates value of duration, if necessary
-		@if length($duration) == 1 {
-			$d: $duration;
-
-			@for $i from 1 through ($length - 1) {
-				$duration: append($duration, $d);
-			}
-		}
-
-		// duplicates value of delay, if necessary
-		@if length($delay) == 1 {
-			$d: $delay;
-
-			@for $i from 1 through ($length - 1) {
-				$delay: append($delay, $d);
-			}
-		}
-
-		// duplicates value of timing-function, if necessary
-		@if length($timing) == 1 {
-			$d: $timing;
-
-			@for $i from 1 through ($length - 1) {
-				$timing: append($timing, $d);
-			}
-		}
-
-		-webkit-transition: zip($property, $duration, $delay, $timing);
-		-moz-transition: zip($property, $duration, $delay, $timing);
-		-o-transition: zip($property, $duration, $delay, $timing);
-		transition: zip($property, $duration, $delay, $timing);
-
-	} @else {
-		-webkit-transition: $property $duration $delay $timing;
-		-moz-transition: $property $duration $delay $timing;
-		-o-transition: $property $duration $delay $timing;
-		transition: $property $duration $delay $timing;
-	}
-}
-
-@mixin canny-box-shadow($value) {
-	-webkit-box-shadow: $value;
-	-moz-box-shadow: $value;
-	-o-box-shadow: $value;
-	box-shadow: $value;
-}
+// ========================================
+// VARIABLES
+// ========================================
 
 $c_main: #404040;
 $c_sub: darken($c_main, 10);
 $c_sub_layer: lighten($c_main, 20);
 $canny_width: 400px;
 
-/*****************************************************************/
-/*	MAIN CSS                                                     */
-/*****************************************************************/
+// ========================================
+//	MAIN CSS
+// ========================================
 
 .canny {
 	-webkit-box-sizing: border-box;
@@ -67,7 +18,7 @@ $canny_width: 400px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: absolute;
-	left: -#{$canny-width};
+	opacity: 0;
 	top: 0;
 	bottom: 0;
 	z-index: 100;
@@ -79,6 +30,16 @@ $canny_width: 400px;
 
 	@media only screen and (max-width: 767px) {
 		width: 290px;
+	}
+
+	&.canny-align-left {
+		opacity: 1;
+		left: -#{$canny-width};
+	}
+
+	&.canny-align-right {
+		opacity: 1;
+		right: -#{$canny-width};
 	}
 
 	a {
@@ -136,17 +97,20 @@ $canny_width: 400px;
 	filter: blur(4px);*/
 }
 
-/*****************************************************************/
-/*	SUBMENU                                                      */
-/*****************************************************************/
+// ========================================
+//	SUBMENU
+// ========================================
 
 .canny-submenu {
-	@include canny-transition(all, 300ms);
 	display: none;
 	margin: 0;
 	padding: 0;
 	background-color: $c_sub;
 	list-style: none;
+	-webkit-transition: all 300ms;
+	-moz-transition: all 300ms;
+	-o-transition: all 300ms;
+	transition: all 300ms;
 
 	&.canny-sub-visible {
 		display: block;
@@ -155,7 +119,6 @@ $canny_width: 400px;
 
 .canny-layered {
 	.canny-submenu {
-		@include canny-box-shadow(6px 0 10px rgba(0, 0, 0, 0.4));
 		display: block;
 		position: absolute;
 		top: 0;
@@ -163,6 +126,10 @@ $canny_width: 400px;
 		z-index: 30;
 		width: 98%;
 		min-height: 100%;
+		-webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+		-moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+		-o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+		box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
 
 		&.canny-sub-visible {
 			left: 0;
@@ -194,17 +161,17 @@ $canny_width: 400px;
 	}
 }
 
-/*****************************************************************/
-/*	BACK LINK                                                    */
-/*****************************************************************/
+// ========================================
+//	BACK LINK
+// ========================================
 
 .canny-back {
 
 }
 
-/*****************************************************************/
-/*	Close LINK                                                   */
-/*****************************************************************/
+// ========================================
+//	CLOSE LINK
+// ========================================
 
 .canny {
 	.canny-close {
@@ -213,12 +180,11 @@ $canny_width: 400px;
 	}
 }
 
-/*****************************************************************/
-/*	OVERLAY                                                      */
-/*****************************************************************/
+// ========================================
+//	OVERLAY
+// ========================================
 
 #canny-overlay {
-	@include canny-transition(opacity, 300ms);
 	visibility: hidden;
 	opacity: 0;
 	position: fixed;
@@ -228,6 +194,10 @@ $canny_width: 400px;
 	width: 0;
 	height: 0;
 	background-color: rgba(0, 0, 0, .5);
+	-webkit-transition: opacity 300ms;
+	-moz-transition: opacity 300ms;
+	-o-transition: opacity 300ms;
+	transition: opacity 300ms;
 
 	&.fading-in,
 	&.visible {
