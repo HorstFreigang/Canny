@@ -125,7 +125,7 @@ If ``true`` the page can not be scrolled when Canny is open.
 
 **layers**
 
-**Value:** ``true`` or ``false``
+**Value:** ``true`` or ``false``  
 **Default:** ``false``
 
 Submenus are opend as layers on top of each other.
@@ -134,7 +134,7 @@ Submenus are opend as layers on top of each other.
 
 **navOffset**
 
-**Value:** Number
+**Value:** Number  
 **Default:** ``0``
 
 If the value is greater then 0, Canny is visible by the amount of the value in pixels. Useful if you want to add a toggle within Canny.
@@ -161,7 +161,7 @@ Position of the menu. Currently you can place Canny either on the left or right 
 
 **transitionSpeed**
 
-**Value:** Number (in miliseconds)
+**Value:** Number (in miliseconds)  
 **Default:** ``300``
 
 How fast Canny slides in and out.
@@ -170,7 +170,7 @@ How fast Canny slides in and out.
 
 **dragToClose**
 
-**Value:** ``true`` or ``false``
+**Value:** ``true`` or ``false``  
 **Default:** ``false``
 
 Close Canny by dragging it.
@@ -179,7 +179,7 @@ Close Canny by dragging it.
 
 **threshold**
 
-**Value:** ``'default'`` or Number
+**Value:** ``'default'`` or Number  
 **Default:** ``300``
 
 How far Canny needs to get dragged until it closes.
@@ -188,7 +188,7 @@ How far Canny needs to get dragged until it closes.
 
 **overlay**
 
-**Value:** ``true`` or ``false``
+**Value:** ``true`` or ``false``  
 **Default:** ``false``
 
 Toggles the overlay.
@@ -197,7 +197,7 @@ Toggles the overlay.
 
 **closeButton**
 
-**Value:** ``true`` or ``false``
+**Value:** ``true`` or ``false``  
 **Default:** ``false``
 
 Enables close-button in Canny.
@@ -206,7 +206,7 @@ Enables close-button in Canny.
 
 **closeButtonLabel**
 
-**Value:** String
+**Value:** String  
 **Default:** ``'<span>Close</span>'``
 
 Sets the label of close-button.
@@ -215,7 +215,7 @@ Sets the label of close-button.
 
 **backButtonLabel**
 
-**Value:** String
+**Value:** String  
 **Default:** ``'&laquo; Back'``
 
 Changes label of back-button.
@@ -224,7 +224,7 @@ Changes label of back-button.
 
 **copyParentLink**
 
-**Value:** ``true`` or ``false``
+**Value:** ``true`` or ``false``  
 **Default:** ``false``
 
 Copies parent-link to sub-menu.
