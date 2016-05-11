@@ -66,9 +66,166 @@ body {
 	}
 }
 
+// ========================================
+//	CANNY THEME
+// ========================================
+$c_main: #404040;
+$c_sub: darken($c_main, 10);
+$c_sub_layer: lighten($c_main, 20);
+
 .canny {
 	top: 60px;
+	background-color: $c_main;
+
+	a {
+		padding: 13px 20px 11px;
+		font: {
+			size: 16px;
+			weight: normal;
+		}
+		text-decoration: none;
+		color: #fff;
+
+		&:hover {
+			background-color: darken($c_main, 20);
+		}
+	}
 }
+
+.canny-parent {
+	&:not(.with-toggle) {
+		& > a {
+			position: relative;
+
+			&:after {
+				content: '\00BB';
+				position: absolute;
+				top: 10px;
+				right: 20px;
+				font-size: 20px;
+				color: inherit;
+			}
+		}
+
+		&.canny-sub-open {
+			& > a {
+				position: relative;
+
+				&:after {
+					-webkit-transform: rotate(90deg);
+					-moz-transform: rotate(90deg);
+					transform: rotate(90deg);
+				}
+			}
+		}
+	}
+
+	&.with-toggle {
+		position: relative;
+	}
+}
+
+// ========================================
+//	CANNY SUBMENU TOGGLE
+// ========================================
+
+.canny-submenu-toggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50px;
+	height: 42px;
+	background: none transparent;
+	border: 0;
+	border-left: solid 1px #fff;
+	color: #fff;
+	cursor: pointer;
+	outline: none;
+
+	span {
+		&:before {
+			content: '\00BB';
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			font-size: 20px;
+			color: inherit;
+			transform-origin: center center;
+		}
+	}
+}
+
+.canny-sub-open {
+	.canny-sub-visible + .canny-submenu-toggle {
+		span {
+			&:before {
+				-webkit-transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				transform: rotate(90deg);
+			}
+		}
+	}
+}
+
+// ========================================
+//	SUBMENU
+// ========================================
+
+.canny-submenu {
+	background-color: $c_sub;
+	-webkit-transition: all 300ms;
+	-moz-transition: all 300ms;
+	-o-transition: all 300ms;
+	transition: all 300ms;
+}
+
+.canny-layered {
+	.canny-submenu {
+		-webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+		-moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+		-o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+		box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
+
+		a {
+			color: $c_main;
+
+			&:hover {
+				background-color: darken($c_sub_layer, 20);
+			}
+		}
+	}
+
+	ul {
+		background-color: $c_sub_layer;
+
+		a {
+			border-bottom: solid 1px darken($c_sub_layer, 12);
+		}
+
+		ul {
+			background-color: lighten($c_sub_layer, 20);
+
+			a {
+				border-bottom: solid 1px $c_sub_layer;
+			}
+		}
+	}
+}
+
+// ========================================
+//	CLOSE LINK
+// ========================================
+
+.canny {
+	.canny-close {
+		text-align: right;
+		cursor: pointer;
+	}
+}
+
+// ========================================
+//	CANNY TOGGLE
+// ========================================
 
 .canny-toggle {
 	display: inline-block;
