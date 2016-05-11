@@ -4,8 +4,8 @@
 
 Include the jQuery and Canny  
 ```html
-<script src="jquery-1.11.1.min.js"></script>  
-<script src="jquery-canny.x.xx.min.js"></script>
+<script src="jquery.js"></script>  
+<script src="jquery-canny.x.x.x.js"></script>
 ```
 Include CSS  
 ```html
@@ -18,15 +18,18 @@ Markup
   <head>
     <title>Canny Demo</title>
     <script src="jquery-1.11.1.min.js"></script>  
-    <script src="jquery-canny.x.xx.min.js"></script>
+    <script src="jquery-canny.x.x.x.js"></script>
     <link href="canny.css" rel="stylesheet" />
   </head>
   
   <body>
+    <!-- Default page content -->
     <div id="container">
       <button id="canny-toggle">Menu</button
       <!-- Content -->
     </div>
+    
+    <!-- Canny -->
     <ul id="canny">
       <li><a href="">Link 1</a></li>
       <li>
@@ -120,6 +123,15 @@ If ``true`` the page can not be scrolled when Canny is open.
 
 - - - -
 
+**layers**
+
+**Value:** ``true`` or ``false``
+**Default:** ``false``
+
+Submenus are opend as layers on top of each other.
+
+- - - -
+
 **navOffset**
 
 **Value:** Number
@@ -149,7 +161,70 @@ Position of the menu. Currently you can place Canny either on the left or right 
 
 **transitionSpeed**
 
-**Value:** Number (in miliseconds)  
+**Value:** Number (in miliseconds)
 **Default:** ``300``
 
 How fast Canny slides in and out.
+
+- - - -
+
+**dragToClose**
+
+**Value:** ``true`` or ``false``
+**Default:** ``false``
+
+Close Canny by dragging it.
+
+- - - -
+
+**threshold**
+
+**Value:** ``'default'`` or Number
+**Default:** ``300``
+
+How far Canny needs to get dragged until it closes.
+
+- - - -
+
+**overlay**
+
+**Value:** ``true`` or ``false``
+**Default:** ``false``
+
+Toggles the overlay.
+
+- - - -
+
+**closeButton**
+
+**Value:** ``true`` or ``false``
+**Default:** ``false``
+
+Enables close-button in Canny.
+
+- - - -
+
+**closeButtonLabel**
+
+**Value:** String
+**Default:** ``'<span>Close</span>'``
+
+Sets the label of close-button.
+
+- - - -
+
+**backButtonLabel**
+
+**Value:** String
+**Default:** ``'&laquo; Back'``
+
+Changes label of back-button.
+
+- - - -
+
+**copyParentLink**
+
+**Value:** ``true`` or ``false``
+**Default:** ``false``
+
+Copies parent-link to sub-menu.
