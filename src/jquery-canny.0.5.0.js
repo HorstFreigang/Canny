@@ -288,11 +288,17 @@
 	/**************************************************************/
 
 	function searchSubmenu(list) {
-		list.children('li').each(function() {
+		list.children('li').each(function(i) {
 			if($(this).children('ul').length > 0) {
 
-				$(this).addClass('canny-parent');
-				$(this).children('ul').each(function() {
+				if(_self.options.layers == false) {
+					$(this).addClass('canny-parent with-toggle');
+					$(this).append('<button class="canny-submenu-toggle"><span></span></button>');
+				} else {
+					$(this).addClass('canny-parent');
+				}
+
+				$(this).children('ul').each(function(i) {
 					$(this).addClass('canny-submenu');
 				});
 
@@ -378,11 +384,32 @@
 		}
 	}
 
-	function layersReleaseCheck(e, $this) {
+	function openSubmenu(e, $this) {
 		if($this.data('dragOrientation') == null) {
 			var $target = $(e.target);
+			var goodToGo = false;
 
-			if($target.is('A')) {
+			console.log(_self, _self.options.layers);
+
+			if(_self.options.layers == false) {
+				console.log(':)');
+				if($target.hasClass('canny-close') == false) {
+					if ($target.is('BUTTON') || $($target[0].parentElement).attr('class') == 'canny-submenu-toggle') {
+						goodToGo = true;
+
+						if ($target.is('BUTTON') == false) {
+							$target = $($target[0].parentElement);
+						}
+					}
+				}
+			} else if(_self.options.layers == true) {
+				console.log(':(');
+				if($target.is('A')) {
+					goodToGo = true;
+				}
+			}
+
+			if(goodToGo) {
 				var $parent = $target.parent();
 
 				if($parent.hasClass('canny-back') == true) {
@@ -393,13 +420,14 @@
 
 				if($parent.hasClass('canny-parent') == true) {
 					e.preventDefault();
-					var $sub = $target.parent('li').find('.canny-submenu').first();
+					var $sub = $parent.find('.canny-submenu').first();
+
 					if($sub.hasClass('canny-sub-visible') == true) {
 						$sub.removeClass('canny-sub-visible');
-						$target.parent('li').removeClass('canny-sub-open');
+						$parent.removeClass('canny-sub-open');
 					} else {
 						$sub.addClass('canny-sub-visible');
-						$target.parent('li').addClass('canny-sub-open');
+						$parent.addClass('canny-sub-open');
 					}
 				}
 
@@ -463,23 +491,32 @@
 				});
 			}
 
+			_navi.on({
+				dragstart: function(e) {
+					// stops dragging of html elements
+					e.preventDefault();
+				},
+				mousedown: function(e) {
+					naviEventDown(e, $(this));
+				},
+				mouseup: function(e) {
+					openSubmenu(e, $(this));
+				},
+				touchstart: function(e) {
+					naviEventDown(e, $(this));
+				},
+				touchend: function() {
+					openSubmenu(e, $(this));
+				}
+			});
+
 			if(_self.options.dragToClose == true) {
 				_navi.on({
-					dragstart: function(e) {
-						// stops dragging of html elements
-						e.preventDefault();
-					},
-					mousedown: function(e) {
-						naviEventDown(e, $(this));
-					},
 					mouseup: function(e) {
 						closeDraggedNavi(e, $(this));
 					},
 					mousemove: function(e) {
 						dragNavi(e, $(this));
-					},
-					touchstart: function(e) {
-						naviEventDown(e, $(this));
 					},
 					touchend: function(e) {
 						closeDraggedNavi(e, $(this));
@@ -492,25 +529,13 @@
 
 			if(_self.options.layers == true) {
 				_navi.on({
-					dragstart: function(e) {
-						// stops dragging of html elements
-						e.preventDefault();
-					},
-					mousedown: function(e) {
-						naviEventDown(e, $(this));
-					},
 					mouseup: function(e) {
-						layersReleaseCheck(e, $(this));
 						naviEventUp(e, $(this));
 					},
 					mousemove: function(e) {
 						getMovDirection(e, $(this));
 					},
-					touchstart: function(e) {
-						naviEventDown(e, $(this));
-					},
 					touchend: function(e) {
-						layersReleaseCheck(e, $(this));
 						naviEventUp(e, $(this));
 					},
 					touchmove: function(e) {
