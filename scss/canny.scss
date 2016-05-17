@@ -2,32 +2,21 @@
 //	MAIN CSS
 // ========================================
 
-$canny_width: 400px;
-
 .canny {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	overflow-x: hidden;
 	overflow-y: auto;
-	position: absolute;
 	opacity: 0;
-	top: 0;
-	bottom: 0;
+	position: absolute;
 	z-index: 100;
-	width: $canny-width;
-	margin: 0;
-	padding: 0;
 	list-style: none;
 
-	&.canny-align-left {
+	&.canny-align-left,
+	&.canny-align-right,
+	&.canny-align-top {
 		opacity: 1;
-		left: -#{$canny-width};
-	}
-
-	&.canny-align-right {
-		opacity: 1;
-		right: -#{$canny-width};
 	}
 
 	a {

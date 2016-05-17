@@ -17,6 +17,7 @@ body {
 	position: fixed;
 	left: 0;
 	top: 0;
+	z-index: 101;
 	width: 100%;
 	height: 60px;
 	box-sizing: border-box;
@@ -69,12 +70,23 @@ body {
 // ========================================
 //	CANNY THEME
 // ========================================
+
 $c_main: #404040;
 $c_sub: darken($c_main, 10);
 $c_sub_layer: lighten($c_main, 20);
 
 .canny {
-	top: 60px;
+	//top: 60px; // .canny-align-left and .canny-align-right
+	//bottom: 0; // .canny-align-left and .canny-align-right
+	//width: 400px; // .canny-align-left and .canny-align-right
+
+	margin: 0;
+
+	z-index: 100; // .canny-align-top
+	width: 100%; // .canny-align-top
+	margin-top: 60px;  // .canny-align-top
+
+	padding: 0;
 	background-color: $c_main;
 
 	a {

@@ -152,10 +152,10 @@ The element that opens and closes Canny.
 
 **navPosition**
 
-**Value:** ``'left'`` or ``'right'``  
+**Value:** ``'left'``, ``'top'`` or ``'right'``
 **Default:** ``'left'``
 
-Position of the menu. Currently you can place Canny either on the left or right side.
+Position of the menu. Currently you can place Canny on the left, right or top side.
 
 - - - -
 

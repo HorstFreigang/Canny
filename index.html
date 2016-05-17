@@ -65,19 +65,27 @@
 						<a href="#21">Option 2 1</a>
 						<ul>
 							<li>
-								<a href="#221">Option 2 1 1</a>
+								<a href="#211">Option 2 1 1</a>
 								<ul>
-									<li><a href="#221">Option 2 1 1 1</a></li>
-									<li><a href="#222">Option 2 1 1 2</a></li>
-									<li><a href="#223">Option 2 1 1 3</a></li>
-									<li><a href="#224">Option 2 1 1 4</a></li>
-									<li><a href="#225">Option 2 1 1 5</a></li>
+									<li><a href="#2111">Option 2 1 1 1</a></li>
+									<li>
+										<a href="#2112">Option 2 1 1 2</a>
+										<ul>
+											<li><a href="#21121">Option 2 1 1 2 1</a></li>
+											<li><a href="#21122">Option 2 1 1 2 2</a></li>
+											<li><a href="#21123">Option 2 1 1 2 3</a></li>
+											<li><a href="#21124">Option 2 1 1 2 4</a></li>
+										</ul>
+									</li>
+									<li><a href="#2113">Option 2 1 1 3</a></li>
+									<li><a href="#2114">Option 2 1 1 4</a></li>
+									<li><a href="#2115">Option 2 1 1 5</a></li>
 								</ul>
 							</li>
-							<li><a href="#222">Option 2 1 2</a></li>
-							<li><a href="#223">Option 2 1 3</a></li>
-							<li><a href="#224">Option 2 1 4</a></li>
-							<li><a href="#225">Option 2 1 5</a></li>
+							<li><a href="#212">Option 2 1 2</a></li>
+							<li><a href="#213">Option 2 1 3</a></li>
+							<li><a href="#214">Option 2 1 4</a></li>
+							<li><a href="#215">Option 2 1 5</a></li>
 						</ul>
 					</li>
 					<li>
@@ -139,18 +147,23 @@
 		</ul>
 
 		<script src="vendor/jquery-2.2.3.min.js"></script>
-		<script src="src/jquery-canny.0.6.0.js"></script>
+		<!--script src="src/may%20become%20forgotten/jquery-canny.0.6.0.js"></script-->
+		<script src="src/jquery-canny.js"></script>
 		<script>
 			$(function() {
 				var myCannyPage = $('#canny-page').canny({
-					transitionSpeed: 300,
+					transitionSpeed: 600,
 					threshold: 100,
+					cannyParent: 'body',
 					contentWrap: '#container',
 					navToggle: '.canny-toggle',
-					dragToClose: true,
+					dragToClose: false,
 					copyParentLink: false,
 					layers: false,
+					navPosition: 'top',
 					closeButton: true,
+					pushContent: true,
+					fixedView: false,
 					overlay: true
 				});
 

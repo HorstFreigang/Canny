@@ -1,31 +1,20 @@
-/* line 7, ../scss/canny.scss */
+/* line 5, ../scss/canny.scss */
 .canny {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
-  position: absolute;
   opacity: 0;
-  top: 0;
-  bottom: 0;
+  position: absolute;
   z-index: 100;
-  width: 400px;
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
-/* line 23, ../scss/canny.scss */
-.canny.canny-align-left {
+/* line 16, ../scss/canny.scss */
+.canny.canny-align-left, .canny.canny-align-right, .canny.canny-align-top {
   opacity: 1;
-  left: -400px;
 }
-/* line 28, ../scss/canny.scss */
-.canny.canny-align-right {
-  opacity: 1;
-  right: -400px;
-}
-/* line 33, ../scss/canny.scss */
+/* line 22, ../scss/canny.scss */
 .canny a {
   display: block;
   -webkit-box-sizing: border-box;
@@ -33,19 +22,19 @@
   box-sizing: border-box;
 }
 
-/* line 45, ../scss/canny.scss */
+/* line 34, ../scss/canny.scss */
 .canny-submenu {
   display: none;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 51, ../scss/canny.scss */
+/* line 40, ../scss/canny.scss */
 .canny-submenu.canny-sub-visible {
   display: block;
 }
 
-/* line 57, ../scss/canny.scss */
+/* line 46, ../scss/canny.scss */
 .canny-layered .canny-submenu {
   display: block;
   position: absolute;
@@ -55,12 +44,12 @@
   width: 98%;
   min-height: 100%;
 }
-/* line 66, ../scss/canny.scss */
+/* line 55, ../scss/canny.scss */
 .canny-layered .canny-submenu.canny-sub-visible {
   left: 0;
 }
 
-/* line 76, ../scss/canny.scss */
+/* line 65, ../scss/canny.scss */
 #canny-overlay {
   visibility: hidden;
   opacity: 0;
@@ -72,14 +61,14 @@
   height: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 87, ../scss/canny.scss */
+/* line 76, ../scss/canny.scss */
 #canny-overlay.fading-in, #canny-overlay.visible {
   visibility: visible;
   opacity: 1;
   width: 100%;
   height: 100%;
 }
-/* line 95, ../scss/canny.scss */
+/* line 84, ../scss/canny.scss */
 #canny-overlay.fading-out {
   opacity: 0;
 }

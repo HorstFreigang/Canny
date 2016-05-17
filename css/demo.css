@@ -20,25 +20,26 @@ body {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 101;
   width: 100%;
   height: 60px;
   box-sizing: border-box;
   background-color: black;
 }
 
-/* line 26, ../scss/demo.scss */
+/* line 27, ../scss/demo.scss */
 .content {
   padding: 60px 0 0 20px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 26, ../scss/demo.scss */
+  /* line 27, ../scss/demo.scss */
   .content {
     width: auto;
     padding: 60px 20px 0;
   }
 }
 
-/* line 35, ../scss/demo.scss */
+/* line 36, ../scss/demo.scss */
 .offcanvas-container {
   overflow: hidden;
   position: relative;
@@ -48,26 +49,26 @@ body {
   border: solid 1px #000;
 }
 @media only screen and (max-width: 767px) {
-  /* line 35, ../scss/demo.scss */
+  /* line 36, ../scss/demo.scss */
   .offcanvas-container {
     width: auto;
   }
 }
-/* line 47, ../scss/demo.scss */
+/* line 48, ../scss/demo.scss */
 .offcanvas-container p {
   padding: 0 20px;
 }
-/* line 51, ../scss/demo.scss */
+/* line 52, ../scss/demo.scss */
 .offcanvas-container .container-header {
   width: 100%;
   height: 30px;
   background-color: #000;
 }
-/* line 57, ../scss/demo.scss */
+/* line 58, ../scss/demo.scss */
 .offcanvas-container .canny-content-toggle2 {
   float: right;
 }
-/* line 61, ../scss/demo.scss */
+/* line 62, ../scss/demo.scss */
 .offcanvas-container .canny {
   top: 0;
   width: 150px;
@@ -75,12 +76,16 @@ body {
   background-color: #000;
 }
 
-/* line 76, ../scss/demo.scss */
+/* line 78, ../scss/demo.scss */
 .canny {
-  top: 60px;
+  margin: 0;
+  z-index: 100;
+  width: 100%;
+  margin-top: 60px;
+  padding: 0;
   background-color: #404040;
 }
-/* line 80, ../scss/demo.scss */
+/* line 92, ../scss/demo.scss */
 .canny a {
   padding: 13px 20px 11px;
   font-size: 16px;
@@ -88,16 +93,16 @@ body {
   text-decoration: none;
   color: #fff;
 }
-/* line 89, ../scss/demo.scss */
+/* line 101, ../scss/demo.scss */
 .canny a:hover {
   background-color: #0d0d0d;
 }
 
-/* line 97, ../scss/demo.scss */
+/* line 109, ../scss/demo.scss */
 .canny-parent:not(.with-toggle) > a {
   position: relative;
 }
-/* line 100, ../scss/demo.scss */
+/* line 112, ../scss/demo.scss */
 .canny-parent:not(.with-toggle) > a:after {
   content: '\00BB';
   position: absolute;
@@ -106,22 +111,22 @@ body {
   font-size: 20px;
   color: inherit;
 }
-/* line 111, ../scss/demo.scss */
+/* line 123, ../scss/demo.scss */
 .canny-parent:not(.with-toggle).canny-sub-open > a {
   position: relative;
 }
-/* line 114, ../scss/demo.scss */
+/* line 126, ../scss/demo.scss */
 .canny-parent:not(.with-toggle).canny-sub-open > a:after {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-/* line 123, ../scss/demo.scss */
+/* line 135, ../scss/demo.scss */
 .canny-parent.with-toggle {
   position: relative;
 }
 
-/* line 132, ../scss/demo.scss */
+/* line 144, ../scss/demo.scss */
 .canny-submenu-toggle {
   position: absolute;
   top: 0;
@@ -135,7 +140,7 @@ body {
   cursor: pointer;
   outline: none;
 }
-/* line 146, ../scss/demo.scss */
+/* line 158, ../scss/demo.scss */
 .canny-submenu-toggle span:before {
   content: '\00BB';
   position: absolute;
@@ -146,14 +151,14 @@ body {
   transform-origin: center center;
 }
 
-/* line 161, ../scss/demo.scss */
+/* line 173, ../scss/demo.scss */
 .canny-sub-open .canny-sub-visible + .canny-submenu-toggle span:before {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
-/* line 174, ../scss/demo.scss */
+/* line 186, ../scss/demo.scss */
 .canny-submenu {
   background-color: #272727;
   -webkit-transition: all 300ms;
@@ -162,45 +167,45 @@ body {
   transition: all 300ms;
 }
 
-/* line 183, ../scss/demo.scss */
+/* line 195, ../scss/demo.scss */
 .canny-layered .canny-submenu {
   -webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   -o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
 }
-/* line 189, ../scss/demo.scss */
+/* line 201, ../scss/demo.scss */
 .canny-layered .canny-submenu a {
   color: #404040;
 }
-/* line 192, ../scss/demo.scss */
+/* line 204, ../scss/demo.scss */
 .canny-layered .canny-submenu a:hover {
   background-color: #404040;
 }
-/* line 198, ../scss/demo.scss */
+/* line 210, ../scss/demo.scss */
 .canny-layered ul {
   background-color: #737373;
 }
-/* line 201, ../scss/demo.scss */
+/* line 213, ../scss/demo.scss */
 .canny-layered ul a {
   border-bottom: solid 1px #545454;
 }
-/* line 205, ../scss/demo.scss */
+/* line 217, ../scss/demo.scss */
 .canny-layered ul ul {
   background-color: #a6a6a6;
 }
-/* line 208, ../scss/demo.scss */
+/* line 220, ../scss/demo.scss */
 .canny-layered ul ul a {
   border-bottom: solid 1px #737373;
 }
 
-/* line 220, ../scss/demo.scss */
+/* line 232, ../scss/demo.scss */
 .canny .canny-close {
   text-align: right;
   cursor: pointer;
 }
 
-/* line 230, ../scss/demo.scss */
+/* line 242, ../scss/demo.scss */
 .canny-toggle {
   display: inline-block;
   box-sizing: border-box;
@@ -212,36 +217,36 @@ body {
   text-decoration: none;
 }
 
-/* line 241, ../scss/demo.scss */
+/* line 253, ../scss/demo.scss */
 .navigation {
   list-style: none;
 }
-/* line 244, ../scss/demo.scss */
+/* line 256, ../scss/demo.scss */
 .navigation:after {
   content: '';
   display: block;
   clear: both;
 }
-/* line 250, ../scss/demo.scss */
+/* line 262, ../scss/demo.scss */
 .navigation li {
   float: left;
   margin-right: 20px;
 }
-/* line 255, ../scss/demo.scss */
+/* line 267, ../scss/demo.scss */
 .navigation li:hover ul {
   display: block;
 }
-/* line 261, ../scss/demo.scss */
+/* line 273, ../scss/demo.scss */
 .navigation a {
   font-size: 18px;
   color: #fff;
 }
-/* line 266, ../scss/demo.scss */
+/* line 278, ../scss/demo.scss */
 .navigation ul {
   display: none;
   position: absolute;
 }
-/* line 270, ../scss/demo.scss */
+/* line 282, ../scss/demo.scss */
 .navigation ul li {
   float: none;
 }
