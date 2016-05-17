@@ -5,7 +5,7 @@
 Include the jQuery and Canny  
 ```html
 <script src="jquery.js"></script>  
-<script src="jquery-canny.x.x.x.js"></script>
+<script src="jquery-canny.js"></script>
 ```
 Include CSS  
 ```html
@@ -17,15 +17,15 @@ Markup
 <html>
   <head>
     <title>Canny Demo</title>
-    <script src="jquery-1.11.1.min.js"></script>  
-    <script src="jquery-canny.x.x.x.js"></script>
+    <script src="jquery.js"></script>
+    <script src="jquery-canny.js"></script>
     <link href="canny.css" rel="stylesheet" />
   </head>
   
   <body>
     <!-- Default page content -->
     <div id="container">
-      <button id="canny-toggle">Menu</button
+      <button id="canny-toggle">Menu</button>
       <!-- Content -->
     </div>
     
@@ -65,7 +65,7 @@ $(function() {
 **Value:** ID or Class (e.g.: ``'#container'`` or ``'.container'``)  
 **Default:** ``null``
 
-The element that contains Canny and ``contentWrap``, if empty Canny searches for nearest parent. Set if Canny is wrapped by a ``<nav>`` - element or something else.
+The element that contains Canny and ``contentWrap``, if it is empty Canny searches for the nearest parent. Set this option if Canny is wrapped by an element. This option needs to be set correctly, if ``fixedView`` is ``true``.
 
 - - - -
 
@@ -74,7 +74,7 @@ The element that contains Canny and ``contentWrap``, if empty Canny searches for
 **Value:** ID or Class (e.g.: ``'#container'`` or ``'.container'``)  
 **Default:** ``''``
 
-This is the element that contains the content. It should be the outermost element in your markup and it **must not contain** Canny. It needs to be set if you want to use ``pushContent``.
+This is the element that contains the content. It **must not contain** Canny. It needs to be set if you want to use ``pushContent``.
 
 - - - -
 
@@ -110,7 +110,7 @@ The class that ``cannyParent`` and ``overlay`` are getting when Canny is closing
 **Value:** ``true`` or ``false``  
 **Default:** ``false``
 
-If ``pushContent`` is ``true`` then the ``contentWrap`` is pushed sideways with Canny.
+If ``pushContent`` is ``true`` then ``contentWrap`` is pushed sideways with Canny.
 
 - - - -
 
@@ -119,7 +119,7 @@ If ``pushContent`` is ``true`` then the ``contentWrap`` is pushed sideways with 
 **Value:** ``true`` or ``false``  
 **Default:** ``true``
 
-If ``true`` the page can not be scrolled when Canny is open.
+If ``true`` the page can not be scrolled when Canny is open. It works marvelouse with a desktop browser, but is buggy on mobile devices, because of the way the viewport works there.
 
 - - - -
 
@@ -128,7 +128,7 @@ If ``true`` the page can not be scrolled when Canny is open.
 **Value:** ``true`` or ``false``  
 **Default:** ``false``
 
-Submenus are opend as layers on top of each other.
+Sub-menus will open as layers on top of each other. A back-button is added automatically to every sub-menu.
 
 - - - -
 
@@ -137,7 +137,7 @@ Submenus are opend as layers on top of each other.
 **Value:** Number  
 **Default:** ``0``
 
-If the value is greater then 0, Canny is visible by the amount of the value in pixels. Useful if you want to add a toggle within Canny.
+If the value is greater then 0 Canny is visible by the amount of the value in pixels. Useful if you want to add a toggle within Canny.
 
 - - - -
 
@@ -155,7 +155,7 @@ The element that opens and closes Canny.
 **Value:** ``'left'``, ``'top'`` or ``'right'``
 **Default:** ``'left'``
 
-Position of the menu. Currently you can place Canny on the left, right or top side.
+Position of the menu. You can place Canny on the left, right or top side. If Canny is placed on top, set ``fixedView`` to ``false``.
 
 - - - -
 
@@ -173,7 +173,7 @@ How fast Canny slides in and out.
 **Value:** ``true`` or ``false``  
 **Default:** ``false``
 
-Close Canny by dragging it.
+Close Canny by dragging it. Currently only works with ``navPosition: 'left'`` and ``navPosition: 'right'``.
 
 - - - -
 
@@ -182,7 +182,7 @@ Close Canny by dragging it.
 **Value:** ``'default'`` or Number  
 **Default:** ``300``
 
-How far Canny needs to get dragged until it closes.
+How far Canny needs to get dragged until it closes. ``'default'`` sets the distance to the half of Canny's width.
 
 - - - -
 
@@ -191,7 +191,7 @@ How far Canny needs to get dragged until it closes.
 **Value:** ``true`` or ``false``  
 **Default:** ``false``
 
-Toggles the overlay.
+Enables the overlay.
 
 - - - -
 
@@ -200,7 +200,7 @@ Toggles the overlay.
 **Value:** ``true`` or ``false``  
 **Default:** ``false``
 
-Enables close-button in Canny.
+Enables a close-button in Canny.
 
 - - - -
 
@@ -209,7 +209,7 @@ Enables close-button in Canny.
 **Value:** String  
 **Default:** ``'<span>Close</span>'``
 
-Sets the label of close-button.
+Sets the label of the close-button.
 
 - - - -
 
@@ -218,7 +218,7 @@ Sets the label of close-button.
 **Value:** String  
 **Default:** ``'&laquo; Back'``
 
-Changes label of back-button.
+Changes the label of the back-button.
 
 - - - -
 
