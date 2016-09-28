@@ -78,33 +78,6 @@ This is the element that contains the content. It **must not contain** Canny. It
 
 - - - -
 
-**openClass**
-
-**Value:** Class name  
-**Default:** ``'canny-open'``
-
-The class that ``cannyParent`` gets when Canny is open.
-
-- - - -
-
-**openingClass**
-
-**Value:** Class name  
-**Default:** ``'canny-opening'``
-
-The class that ``cannyParent`` and ``overlay`` are getting when Canny is opening.
-
-- - - -
-
-**closingClass**
-
-**Value:** Class name  
-**Default:** ``'canny-closing'``
-
-The class that ``cannyParent`` and ``overlay`` are getting when Canny is closing.
-
-- - - -
-
 **pushContent**
 
 **Value:** ``true`` or ``false``  
