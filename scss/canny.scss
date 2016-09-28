@@ -12,6 +12,7 @@
 	position: absolute;
 	z-index: 100;
 	list-style: none;
+	-webkit-overflow-scrolling: touch;
 
 	&.canny-align-left,
 	&.canny-align-right,
@@ -63,10 +64,9 @@
 // ========================================
 
 #canny-overlay {
-	visibility: hidden;
 	opacity: 0;
 	position: fixed;
-	top: 60px;
+	top: 0;
 	left: 0;
 	z-index: 99;
 	width: 0;
@@ -75,13 +75,8 @@
 
 	&.fading-in,
 	&.visible {
-		visibility: visible;
 		opacity: 1;
 		width: 100%;
 		height: 100%;
-	}
-
-	&.fading-out {
-		opacity: 0;
 	}
 }
