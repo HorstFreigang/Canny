@@ -5,15 +5,38 @@
 		<title>Canny</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-		<link href="css/demo.css" rel="stylesheet" />
 		<link href="css/canny.css" rel="stylesheet" />
+		<link href="css/demo.css" rel="stylesheet" />
 	</head>
 
 	<body>
 		<div id="container" class="container">
-			<div class="content">
+			<div class="header">
+				<a href="#" id="canny-page-toggle-left" class="canny-toggle canny-toggle-left">Menü (links)</a>
+				<a href="#" id="canny-page-toggle-top" class="canny-toggle canny-toggle-top">Menü (oben)</a>
+				<a href="#" id="canny-page-toggle-right" class="canny-toggle canny-toggle-right">Menü (rechts)</a>
+			</div>
+
+			<div id="content" class="content">
 				<h1>Lorem ipsum dolor sit amet</h1>
 				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
+
+				<h2>Wie wird Canny benutzt?</h2>
+				<p></p>
+				<pre><code>
+jQuery('#off-canvas').canny({
+
+});
+				</code></pre>
+
+				<h2><code>cannyParent</code></h2>
+				<p>Das ist das Element, das Canny und <code>contentWrap</code> enthält. Wenn leer, dann sucht Canny nach dem nächsten Eltern-Element.</p>
+				<p>Diese Option muss richtig gesetzt werden, wenn <code>fixedView</code> genutzt wird.</p>
+
+				<h2><code>contentWrap</code></h2>
+				<p><code>contentWrap</code> enthält den Inhalt und muss gesetzt sein, wenn <code>pushContent</code> genutzt werden soll.</p>
+				<p>Darf nicht Canny beinhalten.</p>
+
 				<div class="offcanvas-container">
 					<ul id="canny-content" class="canny">
 						<li><a href="#">öaskldhföal</a></li>
@@ -52,11 +75,35 @@
 			</div>
 		</div>
 
-		<div class="header">
-			<a href="#" id="canny-page-toggle" class="canny-toggle">Navigation</a>
-		</div>
+		<ul id="canny-page-right" class="canny">
+			<li><a href="#1">Option 1</a></li>
+			<li>
+				<a href="#1">Option 2</a>
+				<ul>
+					<li><a href="#21">Option 2 1</a></li>
+					<li><a href="#22">Option 2 2</a></li>
+					<li><a href="#23">Option 2 3</a></li>
+					<li><a href="#24">Option 2 4</a></li>
+				</ul>
+			</li>
+			<li><a href="#1">Option 3</a></li>
+		</ul>
 
-		<ul id="canny-page" class="canny">
+		<ul id="canny-page-top" class="canny">
+			<li><a href="#1">Option 1</a></li>
+			<li>
+				<a href="#1">Option 2</a>
+				<ul>
+					<li><a href="#21">Option 2 1</a></li>
+					<li><a href="#22">Option 2 2</a></li>
+					<li><a href="#23">Option 2 3</a></li>
+					<li><a href="#24">Option 2 4</a></li>
+				</ul>
+			</li>
+			<li><a href="#1">Option 3</a></li>
+		</ul>
+
+		<ul id="canny-page-left" class="canny">
 			<li><a href="#1">Option 1</a></li>
 			<li>
 				<a href="#2">Option 2</a>
@@ -143,27 +190,38 @@
 			<li><a href="#15">Option 15</a></li>
 			<li><a href="#16">Option 16</a></li>
 			<li><a href="#17">Option 17</a></li>
-			<li><a href="#18">Option 18</a></li>
+			<li><a href="http://www.google.com">Option 18</a></li>
 		</ul>
 
 		<script src="vendor/jquery-2.2.3.min.js"></script>
-		<!--script src="src/may%20become%20forgotten/jquery-canny.0.6.0.js"></script-->
 		<script src="src/jquery-canny.js"></script>
 		<script>
 			$(function() {
-				var myCannyPage = $('#canny-page').canny({
-					transitionSpeed: 600,
-					threshold: 100,
-					cannyParent: 'body',
-					contentWrap: '#container',
-					navToggle: '.canny-toggle',
-					dragToClose: false,
-					copyParentLink: false,
-					layers: false,
-					navPosition: 'top',
-					closeButton: true,
+				var myCannyPageLeft = $('#canny-page-left').canny({
+					contentWrap: '#content',
+					navToggle: '#canny-page-toggle-left',
+					copyParentLink: true,
+					layers: true,
+					navPosition: 'left',
+					useCloseButton: true,
 					pushContent: true,
-					fixedView: false,
+					overlay: true
+				});
+
+				var myCannyPageTop = $('#canny-page-top').canny({
+					contentWrap: '#content',
+					navToggle: '#canny-page-toggle-top',
+					navPosition: 'top',
+					useCloseButton: true,
+					pushContent: true,
+					overlay: false
+				});
+
+				var myCannyPageRight = $('#canny-page-right').canny({
+					contentWrap: '#content',
+					navToggle: '#canny-page-toggle-right',
+					navPosition: 'right',
+					pushContent: true,
 					overlay: true
 				});
 
