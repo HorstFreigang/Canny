@@ -1,35 +1,44 @@
+// Demo variables
+
+$c_main: #ff7b1b;
+$c_sub: darken($c_main, 10);
+$c_sub_layer: darken($c_main, 10);
+
 html,
 body {
-	counter-reset: sec;
-	margin: 0;
+	overflow-x: hidden;
 	height: 100%;
-	font-family: arial;
+	margin: 0;
+	font-family: Arial, sans-serif;
 	font-size: 14px;
 }
 
-.container {
-	overflow: auto;
-	height: 100%;
-	background-color: #238dab;
+h1, h2 {
+	color: $c_main;
 }
 
 .header {
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 101;
 	width: 100%;
-	height: 60px;
+	height: 30px;
 	box-sizing: border-box;
-	background-color: black;
+	background-color: $c_main;
+
+	@media (max-width: 767px) {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 101;
+	}
 }
 
 .content {
-	padding: 60px 0 0 20px;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 0 0 0 20px;
 
-	@media only screen and (max-width: 767px) {
+	@media (max-width: 767px) {
 		width: auto;
-		padding: 60px 20px 0;
+		padding: 30px 20px 0;
 	}
 }
 
@@ -71,23 +80,20 @@ body {
 //	CANNY THEME
 // ========================================
 
-$c_main: #404040;
-$c_sub: darken($c_main, 10);
-$c_sub_layer: lighten($c_main, 20);
-
 .canny {
-	//top: 60px; // .canny-align-left and .canny-align-right
-	//bottom: 0; // .canny-align-left and .canny-align-right
-	//width: 400px; // .canny-align-left and .canny-align-right
-
+	top: 30px;
+	bottom: 0;
+	width: 280px;
 	margin: 0;
-
-	z-index: 100; // .canny-align-top
-	width: 100%; // .canny-align-top
-	margin-top: 60px;  // .canny-align-top
-
 	padding: 0;
 	background-color: $c_main;
+
+	&.canny-align-top {
+		top: 0;
+		bottom: auto;
+		left: 0;
+		width: 100%;
+	}
 
 	a {
 		padding: 13px 20px 11px;
@@ -197,30 +203,6 @@ $c_sub_layer: lighten($c_main, 20);
 		-moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
 		-o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
 		box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
-
-		a {
-			color: $c_main;
-
-			&:hover {
-				background-color: darken($c_sub_layer, 20);
-			}
-		}
-	}
-
-	ul {
-		background-color: $c_sub_layer;
-
-		a {
-			border-bottom: solid 1px darken($c_sub_layer, 12);
-		}
-
-		ul {
-			background-color: lighten($c_sub_layer, 20);
-
-			a {
-				border-bottom: solid 1px $c_sub_layer;
-			}
-		}
 	}
 }
 
@@ -228,10 +210,22 @@ $c_sub_layer: lighten($c_main, 20);
 //	CLOSE LINK
 // ========================================
 
-.canny {
-	.canny-close {
-		text-align: right;
+.canny-back,
+.canny-close {
+	button {
+		width: 100%;
+		height: 42px;
+		background: none transparent;
+		border: 0;
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+		color: #fff;
+		text-align: center;
 		cursor: pointer;
+
+		&:hover {
+			background-color: darken($c_main, 20);
+		}
 	}
 }
 
@@ -242,45 +236,29 @@ $c_sub_layer: lighten($c_main, 20);
 .canny-toggle {
 	display: inline-block;
 	box-sizing: border-box;
-	height: 60px;
+	height: 30px;
 	margin-left: 20px;
-	padding: 22px 20px 0;
+	padding: 7px 20px 0;
 	background-color: white;
 	color: black;
 	text-decoration: none;
 }
 
-.navigation {
-	list-style: none;
+// ========================================
+//	OVERLAY
+// ========================================
 
-	&:after {
-		content: '';
-		display: block;
-		clear: both;
+#canny-overlay {
+	top: 30px;
+	background-color: rgba(255, 255, 255, .8);
+
+	&.fading-in {
+		opacity: 1;
+		transition: opacity 300ms, width 0s;
 	}
 
-	li {
-		float: left;
-		margin-right: 20px;
-
-		&:hover {
-			ul {
-				display: block;
-			}
-		}
-	}
-
-	a {
-		font-size: 18px;
-		color: #fff;
-	}
-
-	ul {
-		display: none;
-		position: absolute;
-
-		li {
-			float: none;
-		}
+	&.fading-out {
+		opacity: 0;
+		transition: opacity 300ms, width 0s 300ms;
 	}
 }

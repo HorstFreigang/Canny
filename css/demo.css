@@ -1,45 +1,50 @@
-/* line 1, ../scss/demo.scss */
+/* line 7, ../scss/demo.scss */
 html,
 body {
-  counter-reset: sec;
-  margin: 0;
+  overflow-x: hidden;
   height: 100%;
-  font-family: arial;
+  margin: 0;
+  font-family: Arial, sans-serif;
   font-size: 14px;
 }
 
-/* line 10, ../scss/demo.scss */
-.container {
-  overflow: auto;
-  height: 100%;
-  background-color: #238dab;
-}
-
 /* line 16, ../scss/demo.scss */
-.header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 101;
-  width: 100%;
-  height: 60px;
-  box-sizing: border-box;
-  background-color: black;
+h1, h2 {
+  color: #ff7b1b;
 }
 
-/* line 27, ../scss/demo.scss */
-.content {
-  padding: 60px 0 0 20px;
+/* line 20, ../scss/demo.scss */
+.header {
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+  background-color: #ff7b1b;
 }
-@media only screen and (max-width: 767px) {
-  /* line 27, ../scss/demo.scss */
-  .content {
-    width: auto;
-    padding: 60px 20px 0;
+@media (max-width: 767px) {
+  /* line 20, ../scss/demo.scss */
+  .header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 101;
   }
 }
 
-/* line 36, ../scss/demo.scss */
+/* line 34, ../scss/demo.scss */
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 0 0 20px;
+}
+@media (max-width: 767px) {
+  /* line 34, ../scss/demo.scss */
+  .content {
+    width: auto;
+    padding: 30px 20px 0;
+  }
+}
+
+/* line 45, ../scss/demo.scss */
 .offcanvas-container {
   overflow: hidden;
   position: relative;
@@ -49,26 +54,26 @@ body {
   border: solid 1px #000;
 }
 @media only screen and (max-width: 767px) {
-  /* line 36, ../scss/demo.scss */
+  /* line 45, ../scss/demo.scss */
   .offcanvas-container {
     width: auto;
   }
 }
-/* line 48, ../scss/demo.scss */
+/* line 57, ../scss/demo.scss */
 .offcanvas-container p {
   padding: 0 20px;
 }
-/* line 52, ../scss/demo.scss */
+/* line 61, ../scss/demo.scss */
 .offcanvas-container .container-header {
   width: 100%;
   height: 30px;
   background-color: #000;
 }
-/* line 58, ../scss/demo.scss */
+/* line 67, ../scss/demo.scss */
 .offcanvas-container .canny-content-toggle2 {
   float: right;
 }
-/* line 62, ../scss/demo.scss */
+/* line 71, ../scss/demo.scss */
 .offcanvas-container .canny {
   top: 0;
   width: 150px;
@@ -76,16 +81,23 @@ body {
   background-color: #000;
 }
 
-/* line 78, ../scss/demo.scss */
+/* line 83, ../scss/demo.scss */
 .canny {
+  top: 30px;
+  bottom: 0;
+  width: 280px;
   margin: 0;
-  z-index: 100;
-  width: 100%;
-  margin-top: 60px;
   padding: 0;
-  background-color: #404040;
+  background-color: #ff7b1b;
 }
-/* line 92, ../scss/demo.scss */
+/* line 91, ../scss/demo.scss */
+.canny.canny-align-top {
+  top: 0;
+  bottom: auto;
+  left: 0;
+  width: 100%;
+}
+/* line 98, ../scss/demo.scss */
 .canny a {
   padding: 13px 20px 11px;
   font-size: 16px;
@@ -93,16 +105,16 @@ body {
   text-decoration: none;
   color: #fff;
 }
-/* line 101, ../scss/demo.scss */
+/* line 107, ../scss/demo.scss */
 .canny a:hover {
-  background-color: #0d0d0d;
+  background-color: #b44c00;
 }
 
-/* line 109, ../scss/demo.scss */
+/* line 115, ../scss/demo.scss */
 .canny-parent:not(.with-toggle) > a {
   position: relative;
 }
-/* line 112, ../scss/demo.scss */
+/* line 118, ../scss/demo.scss */
 .canny-parent:not(.with-toggle) > a:after {
   content: '\00BB';
   position: absolute;
@@ -111,22 +123,22 @@ body {
   font-size: 20px;
   color: inherit;
 }
-/* line 123, ../scss/demo.scss */
+/* line 129, ../scss/demo.scss */
 .canny-parent:not(.with-toggle).canny-sub-open > a {
   position: relative;
 }
-/* line 126, ../scss/demo.scss */
+/* line 132, ../scss/demo.scss */
 .canny-parent:not(.with-toggle).canny-sub-open > a:after {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-/* line 135, ../scss/demo.scss */
+/* line 141, ../scss/demo.scss */
 .canny-parent.with-toggle {
   position: relative;
 }
 
-/* line 144, ../scss/demo.scss */
+/* line 150, ../scss/demo.scss */
 .canny-submenu-toggle {
   position: absolute;
   top: 0;
@@ -140,7 +152,7 @@ body {
   cursor: pointer;
   outline: none;
 }
-/* line 158, ../scss/demo.scss */
+/* line 164, ../scss/demo.scss */
 .canny-submenu-toggle span:before {
   content: '\00BB';
   position: absolute;
@@ -151,102 +163,73 @@ body {
   transform-origin: center center;
 }
 
-/* line 173, ../scss/demo.scss */
+/* line 179, ../scss/demo.scss */
 .canny-sub-open .canny-sub-visible + .canny-submenu-toggle span:before {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
-/* line 186, ../scss/demo.scss */
+/* line 192, ../scss/demo.scss */
 .canny-submenu {
-  background-color: #272727;
+  background-color: #e76100;
   -webkit-transition: all 300ms;
   -moz-transition: all 300ms;
   -o-transition: all 300ms;
   transition: all 300ms;
 }
 
-/* line 195, ../scss/demo.scss */
+/* line 201, ../scss/demo.scss */
 .canny-layered .canny-submenu {
   -webkit-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   -o-box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
   box-shadow: 6px 0 10px rgba(0, 0, 0, 0.4);
 }
-/* line 201, ../scss/demo.scss */
-.canny-layered .canny-submenu a {
-  color: #404040;
-}
-/* line 204, ../scss/demo.scss */
-.canny-layered .canny-submenu a:hover {
-  background-color: #404040;
-}
-/* line 210, ../scss/demo.scss */
-.canny-layered ul {
-  background-color: #737373;
-}
-/* line 213, ../scss/demo.scss */
-.canny-layered ul a {
-  border-bottom: solid 1px #545454;
-}
-/* line 217, ../scss/demo.scss */
-.canny-layered ul ul {
-  background-color: #a6a6a6;
-}
-/* line 220, ../scss/demo.scss */
-.canny-layered ul ul a {
-  border-bottom: solid 1px #737373;
-}
 
-/* line 232, ../scss/demo.scss */
-.canny .canny-close {
-  text-align: right;
+/* line 215, ../scss/demo.scss */
+.canny-back button,
+.canny-close button {
+  width: 100%;
+  height: 42px;
+  background: none transparent;
+  border: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
   cursor: pointer;
 }
+/* line 226, ../scss/demo.scss */
+.canny-back button:hover,
+.canny-close button:hover {
+  background-color: #b44c00;
+}
 
-/* line 242, ../scss/demo.scss */
+/* line 236, ../scss/demo.scss */
 .canny-toggle {
   display: inline-block;
   box-sizing: border-box;
-  height: 60px;
+  height: 30px;
   margin-left: 20px;
-  padding: 22px 20px 0;
+  padding: 7px 20px 0;
   background-color: white;
   color: black;
   text-decoration: none;
 }
 
-/* line 253, ../scss/demo.scss */
-.navigation {
-  list-style: none;
+/* line 251, ../scss/demo.scss */
+#canny-overlay {
+  top: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
 }
-/* line 256, ../scss/demo.scss */
-.navigation:after {
-  content: '';
-  display: block;
-  clear: both;
+/* line 255, ../scss/demo.scss */
+#canny-overlay.fading-in {
+  opacity: 1;
+  transition: opacity 300ms, width 0s;
 }
-/* line 262, ../scss/demo.scss */
-.navigation li {
-  float: left;
-  margin-right: 20px;
-}
-/* line 267, ../scss/demo.scss */
-.navigation li:hover ul {
-  display: block;
-}
-/* line 273, ../scss/demo.scss */
-.navigation a {
-  font-size: 18px;
-  color: #fff;
-}
-/* line 278, ../scss/demo.scss */
-.navigation ul {
-  display: none;
-  position: absolute;
-}
-/* line 282, ../scss/demo.scss */
-.navigation ul li {
-  float: none;
+/* line 260, ../scss/demo.scss */
+#canny-overlay.fading-out {
+  opacity: 0;
+  transition: opacity 300ms, width 0s 300ms;
 }
