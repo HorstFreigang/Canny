@@ -1,26 +1,14 @@
 /*
  * Canny
  *
- * Version: 0.6.1
+ * Version: 0.7.0
  * Author: Herr Freigang
  * Web: http://www.herrfreigang.de
  *
- * # TODO:
- * - Bug on line 496: close button
- *
- * v 0.6.1
- * - added 'top' to navPosition
- * - fixed: openingClass and closingClass not set correctly
- * - removed unused options
- * - removed unused function
- * - removed version-number in file name
- *
- * v 0.6.0
- * - fixed: now opens submenus even if layers are disabled
- * - fixed: close-button now works properly
- * - fixed: drag to close works now with right-aligned navigations
- * - added missing options to instance data
- * - renamed some functions and some data
+ * v 0.7.0
+ * - fixed a bug were the close-button would close the wrong Canny-instance, if there were more than one
+ * - fixed height calculation, especially for top alignment
+ * - modified and optimized submenu-behavior
  *
  * */
 
@@ -39,17 +27,18 @@
 		navToggle: '',									// class or id of toggle
 		navPosition: 'left',							// position of menu; currentley "left" or "right"
 		threshold: 'default',							// distance in pixels in which the navi snaps back; values: 'default' or any positive number
-		transitionSpeed: 300,							// transition speed
+		transitionSpeed: 300,							// transition speed in milliseconds
 		overlay: false,									// enable overlay
-		closeButton: false,								// enable close button in main navi
-		closeButtonLabel: '<span>Close</span>',			// close button label
+		useCloseButton: false,							// enable close-button in main navi
+		closeButton: '.canny-close',					// close-button
+		closeButtonLabel: '<span>Close</span>',			// close-button label
 		dragToClose: false,								// drag menu to close
 		layers: false,									// open submenus as layers
-		backButtonLabel: '&laquo; Back',				// change label of back button
+		backButtonLabel: '&laquo; Back',				// change label of back-button
 		copyParentLink: false,							// copy parent link to submenu
 	};
 
-	var _self, _navi, _toggle;
+	var _self, _navi, _toggle, _closeBtn;
 	var clickedPointX, clickedPointY = 0;
 	var thresholdDiff;
 	var xPos = 0;
@@ -92,7 +81,7 @@
 			target.addClass('canny-layered');
 			target.find('ul').each(function() {
 				if($(this).parent('li')) {
-					$(this).find('li').first().before('<li class="canny-back"><a href="#">' + target.data('backButtonLabel') + '</a></li>');
+					$(this).find('li').first().before('<li class="canny-back"><button>' + target.data('backButtonLabel') + '</button></li>');
 				}
 			});
 		}
@@ -112,11 +101,9 @@
 		}
 
 		// add close button
-		if(target.data('closeButton') == true) {
-			target.find('li').first().before('<li><a class="canny-close">' + target.data('closeButtonLabel') + '</a></li>');
+		if(target.data('useCloseButton') == true) {
+			target.find('li').first().before('<li class="canny-close"><button>' + target.data('closeButtonLabel') + '</button></li>');
 		}
-
-		//console.log(2, target.width(), target.height());
 
 		// get submenus and assign css classes to them
 		if(target.find('ul').length > 0) {
@@ -129,22 +116,27 @@
 			.css('left', (0 + target.data('navOffset')) + 'px')
 			.css('top', (0 + target.data('navOffset')) + 'px');
 
-		// add actual height to data
-		target.data('height', target.outerHeight());
-
-		// positioning navi outside of canvas
+		// adding classes which devines alignment
 		if(target.data('navPosition') == 'left') {
-			target
-				.addClass('canny-align-left')
-				.css('left', '-' + (target.data('width') - target.data('navOffset')) + 'px');
+			target.addClass('canny-align-left');
 		} else if(target.data('navPosition') == 'right') {
-			target
-				.addClass('canny-align-right')
-				.css('right', '-' + (target.data('width') - target.data('navOffset')) + 'px');
+			target.addClass('canny-align-right');
 		} else if(target.data('navPosition') == 'top') {
-			target
-				.addClass('canny-align-top')
-				.css('top', '-' + (target.data('height') - target.data('navOffset')) + 'px');
+			target.addClass('canny-align-top');
+		}
+	}
+
+	// =================================================
+	// Positioning navi outside of canvas
+	// =================================================
+
+	function alignOutside(target) {
+		if(target.data('navPosition') == 'left') {
+			target.css('left', '-' + (target.data('width') - target.data('navOffset')) + 'px');
+		} else if(target.data('navPosition') == 'right') {
+			target.css('right', '-' + (target.data('width') - target.data('navOffset')) + 'px');
+		} else if(target.data('navPosition') == 'top') {
+			target.css('top', '-' + (target.data('height') - target.data('navOffset')) + 'px');
 		}
 	}
 
@@ -483,41 +475,15 @@
 
 	function toggleSubmenus(e, $this) {
 		if($this.data('orientationOfMovement') == null) {
-			
-			// even if the click targets the span the parent button will be the toggle
 			var toggle = $($(e.target).is('SPAN') ? e.target.parentNode : e.target);
-			var goodToGo = false;
+			var $parent = toggle.parent();
+			var $sub;
 
+			// If layers are off.
+			// Opens submenu, if the toggle is clicked.
 			if($this.data('layers') == false) {
-				if(toggle.is('BUTTON')) {
-					goodToGo = true;
-				}
-			} else if($this.data('layers') == true) {
-				if(toggle.is('A')) {
-					goodToGo = true;
-				}
-			}
-
-			// close button
-			// BUG: something's wrong, if there is another canny open
-			if(toggle.hasClass('canny-close')) {
-				e.preventDefault();
-				_self.close(toggle.parents('.canny'));
-			}
-
-			// opens and closes submenu
-			if(goodToGo) {
-				var $parent = toggle.parent();
-
-				if($parent.hasClass('canny-back') == true) {
-					e.preventDefault();
-					$parent.parent().removeClass('canny-sub-visible');
-					$parent.parents('.canny-parent').removeClass('canny-sub-open');
-				}
-
-				if($parent.hasClass('canny-parent') == true) {
-					e.preventDefault();
-					var $sub = $parent.find('.canny-submenu').first();
+				if($parent.hasClass('with-toggle') && toggle.is('BUTTON')) {
+					$sub = $parent.find('.canny-submenu').first();
 
 					if($sub.hasClass('canny-sub-visible') == true) {
 						$sub.removeClass('canny-sub-visible');
@@ -526,6 +492,22 @@
 						$sub.addClass('canny-sub-visible');
 						$parent.addClass('canny-sub-open');
 					}
+				}
+			}
+
+			// If layers are on.
+			// Click on option with submenu opens submenu.
+			if($this.data('layers') == true) {
+				if($parent.hasClass('canny-parent')) {
+					e.preventDefault();
+					$sub = $parent.find('.canny-submenu').first();
+					$sub.addClass('canny-sub-visible');
+					$parent.addClass('canny-sub-open');
+				}
+
+				if($parent.hasClass('canny-back') == true) {
+					$parent.parent().removeClass('canny-sub-visible');
+					$parent.parents('.canny-parent').removeClass('canny-sub-open');
 				}
 			}
 		}
@@ -537,13 +519,14 @@
 			_navi = this.el;
 			_toggle = $(this.options.navToggle);
 			_toggle.data('target', _navi);
+
 			_navi.addClass('canny');
 
+			_navi.data('this', _navi);
 			_navi.data('status', 'closed');
 			_navi.data('orientationOfMovement', null);
 			_navi.data('directionOfMovement', null);
-			_navi.data('width', 0);
-			_navi.data('height', 0);
+
 			_navi.data('dragged', false);
 			_navi.data('mousedown', false);
 			_navi.data('pushContent', this.options.pushContent);
@@ -559,6 +542,7 @@
 			_navi.data('threshold', this.options.threshold);
 			_navi.data('transitionSpeed', this.options.transitionSpeed);
 			_navi.data('overlay', this.options.overlay);
+			_navi.data('useCloseButton', this.options.useCloseButton);
 			_navi.data('closeButton', this.options.closeButton);
 			_navi.data('closeButtonLabel', this.options.closeButtonLabel);
 			_navi.data('dragToClose', this.options.dragToClose);
@@ -568,10 +552,22 @@
 
 			setupCanny(_navi);
 
-			this.events();
+			if(this.options.useCloseButton == true) {
+				_closeBtn = $(this.options.closeButton);
+				_closeBtn.data('target', _navi);
+			}
+
+			_navi.data('width', _navi.outerWidth());
+			_navi.data('height', _navi.outerHeight());
+
+			alignOutside(_navi);
+
+			console.log(_navi.data('height'));
+
+			this.events(_navi);
 		},
 
-		events: function() {
+		events: function(_this) {
 			// navi toggle
 			if(_toggle != '') {
 				_toggle.on(
@@ -593,13 +589,13 @@
 				);
 			}
 
-			if(_self.options.closeButton == true) {
-				_navi.on('click', '.canny-close', function() {
-					_self.close(_navi);
+			if(_self.options.useCloseButton == true) {
+				_closeBtn.on('click', 'button', function() {
+					_self.close($(this).parent().data('target'));
 				});
 			}
 
-			_navi.on({
+			_this.on({
 				dragstart: function(e) {
 					// stops dragging of html elements
 					e.preventDefault();
@@ -608,18 +604,22 @@
 					naviEventDown(e, $(this));
 				},
 				mouseup: function(e) {
-					toggleSubmenus(e, $(this));
+
 				},
 				touchstart: function(e) {
 					naviEventDown(e, $(this));
 				},
 				touchend: function(e) {
-					toggleSubmenus(e, $(this));
+
 				}
 			});
 
+			_this.on('click touchend', 'a, button', function(e) {
+				toggleSubmenus(e, _this.data('this'));
+			});
+
 			if(_self.options.dragToClose == true) {
-				_navi.on({
+				_this.on({
 					mouseup: function(e) {
 						closeDraggedNavi(e, $(this));
 					},
@@ -636,7 +636,7 @@
 			}
 
 			if(_self.options.layers == true) {
-				_navi.on({
+				_this.on({
 					mouseup: function(e) {
 						naviEventUp(e, $(this));
 					},
