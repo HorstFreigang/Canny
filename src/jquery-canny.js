@@ -1,14 +1,9 @@
 /*
  * Canny
  *
- * Version: 0.7.0
+ * Version: 0.7.1
  * Author: Herr Freigang
  * Web: http://www.herrfreigang.de
- *
- * v 0.7.0
- * - fixed a bug were the close-button would close the wrong Canny-instance, if there were more than one
- * - fixed height calculation, especially for top alignment
- * - modified and optimized submenu-behavior
  *
  * */
 
@@ -44,6 +39,8 @@
 	var xPos = 0;
 	var timeout = 0;
 	var overlay = null;
+    var oldX = 0;
+    var oldY = 0;
 
 	function Canny(element, options, index) {
 		this.el = $(element);
@@ -51,9 +48,11 @@
 		this.init();
 	}
 
-	// =================================================
-	// SETUP CANNY
-	// =================================================
+    /**
+	 * Setup Canny
+	 *
+     * @param target
+     */
 	
 	function setupCanny(target) {
 		// add width to data
@@ -116,7 +115,7 @@
 			.css('left', (0 + target.data('navOffset')) + 'px')
 			.css('top', (0 + target.data('navOffset')) + 'px');
 
-		// adding classes which devines alignment
+		// adding classes which defines alignment
 		if(target.data('navPosition') == 'left') {
 			target.addClass('canny-align-left');
 		} else if(target.data('navPosition') == 'right') {
@@ -126,9 +125,11 @@
 		}
 	}
 
-	// =================================================
-	// Positioning navi outside of canvas
-	// =================================================
+    /**
+	 * Positioning navi outside of canvas
+	 *
+     * @param target
+     */
 
 	function alignOutside(target) {
 		if(target.data('navPosition') == 'left') {
@@ -140,9 +141,11 @@
 		}
 	}
 
-	// =================================================
-	// SLIDE CANNY IN
-	// =================================================
+    /**
+	 * Slide in Canny
+	 *
+     * @param target
+     */
 
 	function slideAllIn(target) {
 		if(target.data('fixedView') == true) {
@@ -218,9 +221,11 @@
 		);
 	}
 
-	// =================================================
-	// SLIDE CANNY OUT
-	// =================================================
+    /**
+	 * Slide out Canny
+	 *
+     * @param target
+     */
 
 	function slideAllOut(target) {
 		if(target.data('navPosition') == 'left') {
@@ -294,9 +299,12 @@
 		thresholdDiff = 0;
 	}
 
-	// =================================================
-	// SEARCHES SUBMENUS
-	// =================================================
+    /**
+	 * Searches submenus
+	 *
+     * @param $this
+     * @param layers
+     */
 
 	function searchSubmenus($this, layers) {
 		$this.children('li').each(function() {
@@ -318,9 +326,12 @@
 		});
 	}
 
-	// =================================================
-	// SOME EVENTS
-	// =================================================
+    /**
+	 * Mousedown event
+	 *
+     * @param e
+     * @param $this
+     */
 	
 	function naviEventDown(e, $this) {
 		clickedPointX = (e.pageX || e.originalEvent.touches[0].pageX);
@@ -328,14 +339,24 @@
 		$this.data('mousedown', true);
 	}
 
+    /**
+	 * Mouseup event
+	 *
+     * @param e
+     * @param $this
+     */
+
 	function naviEventUp(e, $this) {
 		$this.data('mousedown', false);
 		$this.data('orientationOfMovement', null);
 	}
 
-	// =================================================
-	// GET ORIENTATION OF MOVEMENT
-	// =================================================
+    /**
+	 * Get orientation of mouse movement
+	 *
+     * @param e
+     * @param $this
+     */
 	
 	function getOrientationOfMovement(e, $this) {
 		if($this.data('mousedown') == true) {
@@ -352,12 +373,12 @@
 		}
 	}
 
-	// =================================================
-	// CHECK DIRECTION OF MOVEMENT
-	// =================================================
-
-	var oldX = 0;
-	var oldY = 0;
+    /**
+	 * Check direction of mouse movement
+	 *
+     * @param e
+     * @param $this
+     */
 
 	function direction(e, $this) {
 		var currentX = (e.pageX || e.originalEvent.touches[0].pageX);
@@ -387,9 +408,12 @@
 		oldY = currentY;
 	}
 
-	// =================================================
-	// DRAG NAVI
-	// =================================================
+    /**
+	 * Drag menu with mouse
+	 *
+     * @param e
+     * @param $this
+     */
 	
 	function dragNavi(e, $this) {
 
@@ -443,9 +467,12 @@
 		}
 	}
 
-	// =================================================
-	// CLOSE NAVI IF DRAGGED
-	// =================================================
+    /**
+	 * Close navi when dragged
+	 *
+     * @param e
+     * @param $this
+     */
 
 	function closeDraggedNavi(e, $this) {
 		var target = $(e.target);
@@ -466,12 +493,13 @@
 		}
 	}
 
-	// =================================================
-	// SUBMENU TOGGLE
-	//
-	// opens and closes submenus depending on activated
-	// layers-option and clicked target
-	// =================================================
+    /**
+	 * Submenu toggle
+	 * opens and closes submenus depending on activated layers-option and clicked target
+	 *
+     * @param e
+     * @param $this
+     */
 
 	function toggleSubmenus(e, $this) {
 		if($this.data('orientationOfMovement') == null) {
@@ -512,6 +540,12 @@
 			}
 		}
 	}
+
+    /**
+	 * Main Canny object
+	 *
+     * @type {{init: Canny.init, events: Canny.events, open: Canny.open, close: Canny.close, unCanny: Canny.unCanny, _transition: Canny._transition, _noTransition: Canny._noTransition}}
+     */
 
 	Canny.prototype = {
 		init: function() {
@@ -682,6 +716,13 @@
 				.css('-transition', 'none');
 		}
 	};
+
+    /**
+	 * Returns object
+	 *
+     * @param options
+     * @returns {*}
+     */
 
 	$.fn[pluginName] = function(options) {
 		var args = Array.prototype.slice.call(arguments, 1);
